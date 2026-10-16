@@ -1,0 +1,28 @@
+# Recipe: browse a web app, and after every 3 pages switch to VS Code on your
+# project, open a file with Quick Open, read it for a bit, then go back.
+
+run_for: 2h
+speed: slow
+
+browser:
+  site: "https://app.example.com"
+  attach: yes             # your open Chrome (turn on chrome://inspect/#remote-debugging once)
+  login:
+    credentials: ask
+  pages: auto
+  stay_on_page: 40s
+
+apps:
+  every: 3                # after every 3 website pages
+  stay: 60s
+  list:
+    - app: vscode         # or: cursor
+      folder: "~/projects/my-repo"
+      typing_target: focused     # keys go to VS Code itself (no typing into files here)
+      steps:
+        - press: mod+p           # Quick Open (Ctrl+P, or Cmd+P on Mac)
+        - type: "README"
+        - wait: 1s
+        - press: Enter
+        - wait: 3s
+        - scroll: down

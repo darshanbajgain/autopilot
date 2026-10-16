@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Runs Autopilot with its own Python environment. Usage: ./autopilot <command> ...
+DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ ! -x "$DIR/.venv/bin/python" ]; then
+  echo "Autopilot isn't set up yet. Run:  sh $DIR/setup.sh"
+  exit 1
+fi
+PYTHONPATH="$DIR/src${PYTHONPATH:+:$PYTHONPATH}" exec "$DIR/.venv/bin/python" -m autopilot "$@"

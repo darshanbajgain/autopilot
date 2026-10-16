@@ -1,0 +1,11 @@
+# Recipe: walk through every page of a site's menu, slowly, for an hour.
+# Copy it, change 'site:' and run:   autopilot run my-site.yaml
+
+run_for: 1h
+speed: slow
+
+browser:
+  site: "https://example.com"
+  pages: auto            # finds the menu / sidebar links itself
+  stay_on_page: 30s
+  # login: no            # this example site has no login

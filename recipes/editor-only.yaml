@@ -1,0 +1,16 @@
+# Recipe: no website. Alternate between Cursor and VS Code, typing a note into
+# a scratch tab in each (never into your project files) and scrolling.
+
+run_for: 1h
+speed: normal
+
+apps:
+  stay: 45s
+  list:
+    - app: cursor
+      folder: "~/projects/my-repo"
+      steps:                     # typing_target is 'scratch' by default for editors:
+        - type: "TODO: review the login flow\n"     # goes into ~/.autopilot/scratch.txt
+        - wait: 3s               # which is emptied and saved afterwards
+    - app: vscode
+      folder: "~/projects/other-repo"

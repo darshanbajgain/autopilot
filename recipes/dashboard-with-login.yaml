@@ -1,0 +1,18 @@
+# Recipe: log in to a web app, then visit chosen sidebar pages in a loop.
+# Your email/password are asked in the terminal at the start (never stored here).
+
+run_for: forever          # stop with Ctrl+C
+speed: normal
+pause_when_touched: yes
+resume_after: 15s
+
+browser:
+  site: "https://app.example.com"
+  attach: no              # yes = use the Chrome you already have open
+  login:
+    credentials: ask      # ask | saved | env
+    logged_in_when: "Dashboard"   # text that only appears once you're signed in
+  pages: [Dashboard, Projects, Reports, Settings]
+  skip: ["Log out", "Delete"]
+  stay_on_page: 45s
+  order: random

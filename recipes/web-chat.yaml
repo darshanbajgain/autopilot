@@ -1,0 +1,22 @@
+# Recipe: on a chat page, start a new chat, type a message, send it and
+# check that a reply shows up. Each message is real (and may use credits).
+
+run_for: 30m
+speed: normal
+
+browser:
+  site: "https://app.example.com"
+  login:
+    credentials: saved    # asked the first time, then taken from your password store
+  pages: auto
+  stay_on_page: 20s
+  actions:
+    - page: "Chat"        # the menu item's text
+      every: 2            # only on every 2nd visit to this page
+      steps:
+        - click: "New chat"
+        - type: "Give me three ideas for a team lunch"
+          into: "Ask anything"        # the box's placeholder or label
+        - press: Enter
+        - wait: 15s
+        - expect: "1."                # text that should appear in the reply
